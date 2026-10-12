@@ -32,9 +32,12 @@ end
 % plot errors:
 clf
 loglog(hvals,abs(Epu),'o-')
+xlabel('h');
+ylabel('Erro');
 axis([5e-4 .2 1e-12 1])
 hold on
 loglog(hvals,abs(E0u),'o-')
 loglog(hvals,abs(E3u),'o-')
 hold off
+legend('E+', 'E0', 'E3', 'Location','best')
 

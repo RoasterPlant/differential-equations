@@ -16,7 +16,7 @@ function U = bvp2(ax, bx, alpha, ao, beta, bo, f, m1)
     m = m1 - 1;                 % number of interior grid points
 
     % set grid points:  
-    gridchoice = 'rtlayer';          % see xgrid.m for other choices
+    gridchoice = 'random';          % see xgrid.m for other choices
     x = xgrid(ax,bx,m,gridchoice);   
 
     % set up matrix A (using sparse matrix storage):

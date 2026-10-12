@@ -14,14 +14,14 @@ function d = D3(u, x, h)
 d = (2*u(x+h) + 3*u(x) - 6*u(x - h) + u(x - 2*h))/(6*h);
 end
 
-hvals = logspace(-4, -1, 20);
+hvals = logspace(-4, -1, 6);
 Epu = []; E0u = []; E3u = [];
 % u = @(x) sin(10*x);
 % uptrue = 10 * cos(10);
-% u = @(x) x*(x*(4*x - 12) + 14) - 4;
-% uptrue = x*(12*x - 24) + 14;
-u = @(x) abs(x - 1.001).^(3/2);
-uptrue = - (3/2)*0.001.^(1/2);
+u = @(x) x*(x*(4*x - 12) + 14) - 4;
+uptrue = (12 - 24) + 14;
+% u = @(x) abs(x - 1.001).^(3/2);
+% uptrue = - (3/2)*0.001.^(1/2);
 x0 = 1;
 
 % table headings:
@@ -47,9 +47,12 @@ end
 % plot errors:
 clf
 loglog(hvals,abs(Epu),'o-')
+xlabel('h');
+ylabel('Erro');
 % axis([5e-4 .2 1e-12 1])
 hold on
 loglog(hvals,abs(E0u),'o-')
 loglog(hvals,abs(E3u),'o-')
 hold off
+legend('E+', 'E0', 'E3', 'Location','best')
 

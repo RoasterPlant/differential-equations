@@ -1,4 +1,4 @@
-function T = pendulo(t0, tf, alpha, beta, n, initialGuess, MAX_ITER, epsilon)
+function T = pendulum(t0, tf, alpha, beta, n, initialGuess, MAX_ITER, epsilon)
     m = n + 1;
     n0 = n - 1;
 
@@ -7,9 +7,13 @@ function T = pendulo(t0, tf, alpha, beta, n, initialGuess, MAX_ITER, epsilon)
     t = xgrid(t0, tf, n0, gridchoice);
 
     switch initialGuess
-        case "Linear"
+        case "linear"
             theta = linearAprox(t, alpha, beta);
-        otherwise % case "Zero"
+        case "random"
+            theta = 100 * (alpha + beta) * (rand(size(t)) - 0.5);
+            theta(1) = alpha;
+            theta(end) = beta;
+        otherwise % case "zero"
             I = eye(m);
             theta = alpha * I(:, 1) + beta * I(:, m);         
     end
@@ -56,22 +60,4 @@ function G = G(coeff, theta, alpha, beta)
     end
     H(m) = g(coeff, [theta(m-1), theta(m), beta], 2);
     G = H;
-end
-
-function theta = linearAprox(t, alpha, beta)
-    periodicity = (t(end) - t(1))/(2 * pi);
-    if isapprox(periodicity,round(periodicity))
-        if isapprox(sin(t(1)), 0)
-            c = [alpha, alpha];
-        else
-            c = [alpha/sin(t(1)), 0];
-        end
-    else
-        boundary = [alpha, beta];
-        M = [sin(t(1)) cos(t(1))
-             sin(t(end)) cos(t(end))];
-        c = boundary/M;
-    end
-    f = @(x) [sin(x), cos(x)] * c.';
-    theta = f(t);
 end

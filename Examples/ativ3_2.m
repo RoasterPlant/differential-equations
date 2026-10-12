@@ -69,16 +69,17 @@ end
 % 
 % % plot results:
 % 
-% clf
-% hold on
+clf
+hold on
 
 % plot grid:
 % plot(X,Y,'g');  plot(X',Y','g')
 
 % plot solution:
-% contour(X,Y,usoln,50)
-% 
-% axis([ax bx ay by])
-% daspect([1 1 1])
-% title('Contour plot of computed solution')
-% hold off
+contour(X,Y,usoln,50)
+xlabel('x');
+ylabel('y');
+
+axis([ax bx ay by])
+daspect([1 1 1])
+hold off

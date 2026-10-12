@@ -1,13 +1,13 @@
 t0 = 0;
-tf = 27;
+tf = 20;
 alpha = 0.7;  % Dirichlet boundary condition at t0
 beta = 0.7;   % Dirichlet boundary condition at tf
 MAX_ITER = 50;
 epsilon = 1e-5;
-initialGuess = "Zero";
+initialGuess = "random";
 
 % Solve the problem for ntest different grid sizes to test convergence:
-m1vals = [10 20 40 80 140 200];
+m1vals = [40];
 ntest = length(m1vals);
 hvals = zeros(ntest,1);  % to hold h values
 
@@ -21,11 +21,13 @@ for jtest=1:ntest
     t = xgrid(t0,tf,m,gridchoice); 
 
     hvals(jtest) = (tf-t0)/m1;  % average grid spacing, for convergence tests
-    theta = pendulo(t0, tf, alpha, beta, m1, initialGuess, MAX_ITER, epsilon);
+    theta = pendulum(t0, tf, alpha, beta, m1, initialGuess, MAX_ITER, epsilon);
 
     clf
-    plot(t,theta,'o')  % plot computed solution
-    title(sprintf('Computed solution with %i grid points',m2));
+    scatter(t,theta, 30, 'filled')  % plot computed solution
+    xlabel('t')
+    ylabel('Theta')
+    legend(sprintf('%i pontos na malha', m2),'Location','best')
 
     % pause to see this plot:  
     drawnow

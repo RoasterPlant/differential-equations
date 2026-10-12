@@ -28,12 +28,7 @@ function uvec = poisson5grid(ax, bx, mx, ay, by, my, f, bound)
     
     % set boundary conditions around edges of usoln array:
     
-    usoln = bound(X, Y);        % use true solution for this test problem
-                                % This sets full array, but only boundary values
-                                % are used below.  For a problem where utrue
-                                % is not known, would have to set each edge of
-                                % usoln to the desired Dirichlet boundary values.
-    
+    usoln = bound(X, Y);       
     
     % adjust the rhs to include boundary terms:
     rhs(:,1) = rhs(:,1) - usoln(Iint,1)/hy^2;

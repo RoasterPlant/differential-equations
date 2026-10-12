@@ -3,7 +3,7 @@ f = @(t, u) u^2 - g(t);
 t0 = 0;
 tf = 1.6;
 u0 = 2;
-nvals = 2.^(linspace(3, 6, 4));
+nvals = 2.^(linspace(3, 8, 6));
 errors = zeros(size(nvals));
 hvals = (tf - t0) ./ nvals;
 

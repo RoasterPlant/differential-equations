@@ -1,12 +1,12 @@
 ax = 0;
-bx = 1;
+bx = 6;
 ay = 0;
-by = 1;
+by = 2;
 f = @(x,y) 1.25*exp(x+y/2);         % f(x,y) function
 bound = @(x,y) exp(x+y/2);
 
 % Solve the problem for nxtest x nytest different grid sizes to test convergence:
-mxvals = [10 20 40 80];
+mxvals = [30 60 120 240];
 myvals = [10 20 40 80];
 nxtest = length(mxvals);
 nytest = length(myvals);
@@ -67,18 +67,19 @@ end
 
 % fprintf('Error relative to true solution of PDE = %10.3e \n',err)
 % 
-% % plot results:
-% 
-% clf
-% hold on
+% plot results:
+
+clf
+hold on
 
 % plot grid:
 % plot(X,Y,'g');  plot(X',Y','g')
 
 % plot solution:
-% contour(X,Y,usoln,50)
-% 
-% axis([ax bx ay by])
-% daspect([1 1 1])
-% title('Contour plot of computed solution')
-% hold off
+contour(X,Y,usoln,100)
+xlabel('x');
+ylabel('y');
+
+axis([ax bx ay by])
+daspect([1 1 1])
+hold off
